@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="start" color="tertiary" (click)="showMenu()"
+      ><ion-icon slot="start" name="menu"></ion-icon
+    ></ion-button>
+    <ion-title slot="start">{{ title }}</ion-title>
+    <ion-text color="primary" slot="start">
+      {{ usuarioNombre }}
+    </ion-text>
+    <ion-button slot="end" color="danger" (click)="logout()">salir </ion-button>
+  </ion-toolbar>
+</ion-header>

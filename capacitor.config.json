@@ -1,0 +1,14 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "microventas-ui",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "DatePickerPlugin": {
+      "mode": "date",
+      "locale": "pt_BR",
+      "current": "01/01/2022",
+      "format": "dd/MM/yyyy"
+    }
+  }
+}

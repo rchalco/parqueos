@@ -1,0 +1,24 @@
+.myphoto {
+  height: 50vh !important;
+  width: auto !important;
+  align-items: center;
+  margin: 2em;
+  display: block;
+}
+
+.img-inner {
+  animation-name: iluminado;
+  animation-duration: 4s;
+}
+
+@keyframes iluminado {
+  from {
+    opacity: 0.6;
+    transform: translate(-40px, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px);
+    background-color:white;
+  }
+}
