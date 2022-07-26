@@ -105,6 +105,7 @@ export class StockService extends BaseService {
       password: _pass,
       passwordNuevo: '',
       idEmpresa: 1,
+      aplicacion: 1
     };
 
     this.presentLoader();

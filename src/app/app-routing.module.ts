@@ -98,7 +98,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tintoreria/reportes/reportes.module')
     .then( m => m.ReportesPageModule),
     canActivate: [SessioninitGuard],
-  },  {
+  },
+  {
     path: 'reporte-caja',
     loadChildren: () => import('./pages/tintoreria/reporte-caja/reporte-caja.module').then( m => m.ReporteCajaPageModule)
   },
@@ -113,6 +114,10 @@ const routes: Routes = [
   {
     path: 'abm-usuario',
     loadChildren: () => import('./pages/abm-usuario/abm-usuario.module').then( m => m.AbmUsuarioPageModule)
+  },
+  {
+    path: 'abm-ubicacion',
+    loadChildren: () => import('./pages/abm-ubicacion/abm-ubicacion.module').then( m => m.AbmUbicacionPageModule)
   },
 
 

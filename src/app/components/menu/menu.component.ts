@@ -47,7 +47,12 @@ export class MenuComponent implements OnInit {
       url: '/abm-usuario',
       icon: 'paper-plane',
     },
-
+    ,
+    {
+      title: 'Abm. Ubicación',
+      url: '/abm-ubicacion',
+      icon: 'paper-plane',
+    },
   ];
 
   menuPorUsuario: MenuGeneralDTO[] = [];

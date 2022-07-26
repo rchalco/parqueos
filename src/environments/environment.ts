@@ -43,21 +43,21 @@ export const LogoVoucher = '';
 
 //SERVER MYKE
 
-export const URL_MIROVENTA = 'http://140.82.15.241:8003/api/Microventa/';
-export const URL_MIROVENTAOPERACION =
-  'http://140.82.15.241:8003/api/MicroventaOperacion/';
-export const URL_TINTORERIA =
-  'http://140.82.15.241:8003/api/Tintoreria/';
-export const URL_SECURITY = 'http://140.82.15.241:8003/api/Seguridad/';
-export const URL_PERSON = 'http://140.82.15.241:8003/api/Person/';
+//export const URL_MIROVENTA = 'http://140.82.15.241:8003/api/Microventa/';
+//export const URL_MIROVENTAOPERACION =
+//  'http://140.82.15.241:8003/api/MicroventaOperacion/';
+//export const URL_TINTORERIA =
+//  'http://140.82.15.241:8003/api/Tintoreria/';
+//export const URL_SECURITY = 'http://140.82.15.241:8003/api/Seguridad/';
+//export const URL_PERSON = 'http://140.82.15.241:8003/api/Person/';
 
 //SERVER PRUEBA
-// export const URL_MIROVENTA = 'http://localhost:8001/api/Microventa/';
-// export const URL_MIROVENTAOPERACION =
-//   'http://localhost:8001/api/MicroventaOperacion/';
-// export const URL_TINTORERIA = 'http://localhost:8001/api/Tintoreria/';
-// export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
-// export const URL_PERSON = 'http://localhost:8001/api/Person/';
+ export const URL_MIROVENTA = 'http://localhost:8001/api/Microventa/';
+ export const URL_MIROVENTAOPERACION =
+   'http://localhost:8001/api/MicroventaOperacion/';
+ export const URL_TINTORERIA = 'http://localhost:8001/api/Tintoreria/';
+ export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
+ export const URL_PERSON = 'http://localhost:8001/api/Person/';
 
 /*
  * For easier debugging in development mode, you can import the following file
