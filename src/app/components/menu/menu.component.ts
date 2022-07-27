@@ -47,7 +47,6 @@ export class MenuComponent implements OnInit {
       url: '/abm-usuario',
       icon: 'paper-plane',
     },
-    ,
     {
       title: 'Abm. Ubicación',
       url: '/abm-ubicacion',
@@ -82,7 +81,7 @@ export class MenuComponent implements OnInit {
     //  this.appPages = res['Menu'];
     //  console.log('***********res',res);
     //});
-    console.log('Menu resultado 2', this.appPages);
-    this.menu.enable(false, 'custom');
+    //console.log('Menu resultado 2', this.appPages);
+    //this.menu.enable(false, 'custom');
   }
 }

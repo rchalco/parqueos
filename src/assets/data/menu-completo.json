@@ -44,6 +44,11 @@
       "title": "Entrega",
       "url": "/tintoreria-entrega",
       "icon": "paper-plane"
+    },
+    {
+      "title": "ABM-Ubicacion",
+      "url": "/abm-ubicacion",
+      "icon": "paper-plane"
     }
   ]
 }
