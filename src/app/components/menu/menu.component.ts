@@ -48,7 +48,7 @@ export class MenuComponent implements OnInit {
       icon: 'paper-plane',
     },
     {
-      title: 'Abm. Ubicación',
+      title: 'Ubicación',
       url: '/abm-ubicacion',
       icon: 'paper-plane',
     },

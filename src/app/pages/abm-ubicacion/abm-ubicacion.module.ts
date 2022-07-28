@@ -15,7 +15,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     AbmUbicacionPageRoutingModule,
-    ComponentsModule
+    ComponentsModule, FormsModule
   ],
   declarations: [AbmUbicacionPage]
 })

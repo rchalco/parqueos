@@ -1,9 +1,120 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>abm-ubicacion</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-custom-header title="Administración de Ubicaciones"></app-custom-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-content>
 
+    <div *ngIf="showCardGrid">
+      <ion-list>
+          <ion-grid fixed>
+            <ion-row class="cabeceraTabla">
+              <ion-col size="2">Ubicación</ion-col>
+              <ion-col size="2">Capacidad</ion-col>
+              <ion-col size="1">Latitud</ion-col>
+              <ion-col size="1">Longitud</ion-col>
+              <ion-col size="1">Activo</ion-col>
+              <ion-col size="1"></ion-col>
+            </ion-row>
+            <ion-row
+              class="detalleTabla"
+              *ngFor="let ubicacion of ubicaciones"
+            >
+              <ion-col size="2">{{ubicacion.nombreParqueo}} </ion-col>
+              <ion-col size="2">{{ubicacion.capacidad}}</ion-col>
+              <ion-col size="1">{{ubicacion.latitud}}</ion-col>
+              <ion-col size="1">{{ubicacion.longitud}}</ion-col>
+              <ion-col size="1">
+                <ion-checkbox [(ngModel)]="ubicacion.activo" ></ion-checkbox>
+              </ion-col>
+
+              <ion-col size="1">
+                <ion-button (click)="modificar(ubicacion)"
+                  >Modificar
+                </ion-button>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+      </ion-list>
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
+        <ion-fab-button (click)="nueva()" >  
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+
+     <!--personas detalle-->
+     <div *ngIf="!showCardGrid">
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Registro Ubicación</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <form>
+            <ion-list>
+
+              <ion-item>
+                <ion-label>
+                  <h3>Desc.Ubicación</h3>
+                  <ion-input
+                    type="text"
+                    name="ubicacion"
+                    required="true"
+                    [(ngModel)]="selectedRegistro.nombreParqueo"
+                  >
+                  </ion-input>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Capacidad</h3>
+                  <ion-input
+                    type="text"
+                    name="capacidad"
+                    required="true"
+                    [(ngModel)]="selectedRegistro.capacidad"
+                  >
+                  </ion-input>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>
+                  <h3>Latitud</h3>
+                  <ion-input
+                    type="text"
+                    name="latitud"
+                    required="true"
+                    [(ngModel)]="selectedRegistro.latitud"
+                  >
+                  </ion-input>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>
+                  <h3>Longitud</h3>
+                  <ion-input
+                    type="text"
+                    name="longitud"
+                    required="true"
+                    [(ngModel)]="selectedRegistro.longitud"
+                  >
+                  </ion-input>
+                </ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>
+                  <h3>Activo</h3>
+                    <ion-checkbox name="activo" [(ngModel)]="selectedRegistro.activo" ></ion-checkbox>
+                </ion-label>
+              </ion-item>
+              <ion-button (click)="regitrar()"> Grabar </ion-button>
+              <ion-button (click)="cancelarRegistro()"> Cancelar </ion-button>
+            </ion-list>
+          </form>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>
 </ion-content>
