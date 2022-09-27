@@ -117,7 +117,8 @@ export class StockService extends BaseService {
           this.dismissLoader();
         }),
         catchError((error) => {
-          console.error('error del login', error);
+          console.error('error del login obj', error);
+          console.error('error del login message', error.message);
           this.showMessageError('No se tiene comunicacion con el servidor');
           return Observable.throw(new Error(error.status));
         })
@@ -750,6 +751,6 @@ export class StockService extends BaseService {
       );
   }
 
- 
+
 
 }

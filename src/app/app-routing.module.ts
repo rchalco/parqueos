@@ -119,6 +119,15 @@ const routes: Routes = [
     path: 'abm-ubicacion',
     loadChildren: () => import('./pages/abm-ubicacion/abm-ubicacion.module').then( m => m.AbmUbicacionPageModule)
   },
+  {
+    path: 'main-monitor',
+    loadChildren: () => import('./pages/main-monitor/main-monitor.module').then( m => m.MainMonitorPageModule)
+  },  {
+    path: 'map-angular',
+    loadChildren: () => import('./pages/map-angular/map-angular.module').then( m => m.MapAngularPageModule)
+  },
+
+
 
 
 ];

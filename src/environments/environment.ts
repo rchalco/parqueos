@@ -56,10 +56,15 @@ export const LogoVoucher = '';
  export const URL_MIROVENTAOPERACION =
    'http://localhost:8001/api/MicroventaOperacion/';
  export const URL_TINTORERIA = 'http://localhost:8001/api/Tintoreria/';
- export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
+ //export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
  export const URL_PERSON = 'http://localhost:8001/api/Person/';
 
- export const URL_UBICACION = 'http://localhost:8001/api/Ubicacion/';
+///Dev
+ //export const URL_UBICACION = 'http://localhost:8001/api/Ubicacion/';
+
+///Prod
+ export const URL_UBICACION = 'http://140.82.15.241:8003/api/Ubicacion/';
+ export const URL_SECURITY = 'http://140.82.15.241:8003/api/Seguridad/';
 
 /*
  * For easier debugging in development mode, you can import the following file

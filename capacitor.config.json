@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "microventas-ui",
+  "appId": "parqueo.ionic",
+  "appName": "parqueo-ionic",
   "webDir": "www",
   "bundledWebRuntime": false,
   "plugins": {
