@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+//import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SessionendGuard } from './guards/sessionend.guard';
 import { SessioninitGuard } from './guards/sessioninit.guard';
 
 const routes: Routes = [
+
   // {
   //   path: '',
-  //   redirectTo: 'folder/Inbox',
-  //   pathMatch: 'full'
+  //   redirectTo: 'login',
+  //   pathMatch: 'full',
   // },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'mapa-parqueo',
     pathMatch: 'full',
   },
   {
@@ -61,7 +63,7 @@ const routes: Routes = [
       import('./pages/pedido-mesa/pedido-mesa.module').then(
         (m) => m.PedidoMesaPageModule
       ),
-      canActivate: [SessioninitGuard],
+    canActivate: [SessioninitGuard],
   },
   {
     path: 'reporte-tablero',
@@ -69,7 +71,7 @@ const routes: Routes = [
       import('./pages/reporte-tablero/reporte-tablero.module').then(
         (m) => m.ReporteTableroPageModule
       ),
-      canActivate: [SessioninitGuard],
+    canActivate: [SessioninitGuard],
   },
   {
     path: 'venta-tintoreria',
@@ -83,7 +85,7 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
-      canActivate: [SessioninitGuard],
+    canActivate: [SessioninitGuard],
   },
   {
     path: 'tintoreria-entrega',
@@ -91,44 +93,42 @@ const routes: Routes = [
       import(
         './pages/tintoreria/tintoreria-entrega/tintoreria-entrega.module'
       ).then((m) => m.TintoreriaEntregaPageModule),
-      canActivate: [SessioninitGuard],
+    canActivate: [SessioninitGuard],
   },
   {
     path: 'reportes-tintoreria',
     loadChildren: () => import('./pages/tintoreria/reportes/reportes.module')
-    .then( m => m.ReportesPageModule),
+      .then(m => m.ReportesPageModule),
     canActivate: [SessioninitGuard],
   },
   {
     path: 'reporte-caja',
-    loadChildren: () => import('./pages/tintoreria/reporte-caja/reporte-caja.module').then( m => m.ReporteCajaPageModule)
+    loadChildren: () => import('./pages/tintoreria/reporte-caja/reporte-caja.module').then(m => m.ReporteCajaPageModule)
   },
   {
     path: 'apertura-inventario',
-    loadChildren: () => import('./pages/apertura-inventario/apertura-inventario.module').then( m => m.AperturaInventarioPageModule)
+    loadChildren: () => import('./pages/apertura-inventario/apertura-inventario.module').then(m => m.AperturaInventarioPageModule)
   },
   {
     path: 'abm-persona',
-    loadChildren: () => import('./pages/abm-persona/abm-persona.module').then( m => m.AbmPersonaPageModule)
+    loadChildren: () => import('./pages/abm-persona/abm-persona.module').then(m => m.AbmPersonaPageModule)
   },
   {
     path: 'abm-usuario',
-    loadChildren: () => import('./pages/abm-usuario/abm-usuario.module').then( m => m.AbmUsuarioPageModule)
+    loadChildren: () => import('./pages/abm-usuario/abm-usuario.module').then(m => m.AbmUsuarioPageModule)
   },
   {
     path: 'abm-ubicacion',
-    loadChildren: () => import('./pages/abm-ubicacion/abm-ubicacion.module').then( m => m.AbmUbicacionPageModule)
+    loadChildren: () => import('./pages/abm-ubicacion/abm-ubicacion.module').then(m => m.AbmUbicacionPageModule)
   },
   {
     path: 'main-monitor',
-    loadChildren: () => import('./pages/main-monitor/main-monitor.module').then( m => m.MainMonitorPageModule)
-  },  {
-    path: 'map-angular',
-    loadChildren: () => import('./pages/map-angular/map-angular.module').then( m => m.MapAngularPageModule)
+    loadChildren: () => import('./pages/main-monitor/main-monitor.module').then(m => m.MainMonitorPageModule)
   },
-
-
-
+  {
+    path: 'mapa-parqueo',
+    loadChildren: () => import('./pages/mapa-parqueo/mapa-parqueo.module').then(m => m.MapaParqueoPageModule)
+  }
 
 ];
 
@@ -138,4 +138,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

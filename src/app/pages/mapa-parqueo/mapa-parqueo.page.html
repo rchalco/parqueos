@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Parqueos Bolivia</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="apiLoaded">
+    <google-map
+      height="500px"
+      width="100%"
+      [zoom]="currentZoom"
+      [center]="center"
+      [options]="options"
+      (mapClick)="addMarker($event)"
+    >
+      <map-marker
+        *ngFor="let markerPosition of markerPositions"
+        [position]="markerPosition"
+        [options]="markerOptions"
+      ></map-marker>
+    </google-map>
+  </div>
+
+  <!-- <ion-button (click)="zoomIn()" expand="block" fill="clear" shape="round">
+    Zoom in
+  </ion-button>
+  <ion-button (click)="zoomOut()" expand="block" fill="clear" shape="round">
+    Zoom out
+  </ion-button> -->
+</ion-content>
