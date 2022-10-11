@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+import { SeguridadService } from './../../services/seguridad.service';
 import { DatabaseService } from './../../services/DatabaseService';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SaldoCajaDTO } from 'src/app/interfaces/caja/SaldoCaja';
-import { StockService } from 'src/app/services/stock.service';
 import {
   environment,
   HEADERS_SERVICE,
@@ -35,7 +36,7 @@ export class LoginPage implements OnInit {
 
   //resulLogin: SaldoCajaDTO ;
   constructor(
-    private stockService: StockService,
+    private stockService: SeguridadService,
     private router: Router,
     private databaseService: DatabaseService,
     private appComponent: AppComponent

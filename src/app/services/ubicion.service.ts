@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoadingController, ToastController } from '@ionic/angular';
@@ -24,16 +25,16 @@ export class UbicionService extends BaseService {
   ) {
     super(databaseService, httpClient, loadingController, toastController);
   }
-  
-  async obtenerUbicaciones() {
-    let url_query = urlUbicacion + 'ObtenerUbicaciones';
 
-    let dataRequest = {
+  public async obtenerUbicaciones() {
+    const url_query = urlUbicacion + 'ObtenerUbicaciones';
+
+    const dataRequest = {
       ParametroLong1: 0,
     };
 
     await this.getInfoEviroment().then((env) => {
-      dataRequest.ParametroLong1 = env.session;
+      dataRequest.ParametroLong1 = env ? env.session : 0;
     });
 
     this.presentLoader();
@@ -41,7 +42,7 @@ export class UbicionService extends BaseService {
       .post<any>(url_query, JSON.stringify(dataRequest), { headers })
       .pipe(
         finalize(() => {
-          console.log('**se termino la llamada graficoVentaPorProducto');
+          console.log('**se termino la llamada obtenerUbicaciones');
           this.dismissLoader();
         }),
         catchError((error) => {
@@ -53,10 +54,10 @@ export class UbicionService extends BaseService {
   }
 
   async grabarUbicacion(_ubicacion) {
-    let url_query = urlUbicacion + 'GrabarUbicacion';
+    const url_query = urlUbicacion + 'GrabarUbicacion';
 
     // console.log('persona 2',_persona);
-    let dataRequest = {
+    const dataRequest = {
       idUbicacion: _ubicacion.idUbicacion,
       idSesion: 0,
       nombreParqueo: _ubicacion.nombreParqueo,

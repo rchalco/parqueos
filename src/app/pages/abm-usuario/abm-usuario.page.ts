@@ -1,8 +1,8 @@
+import { SeguridadService } from './../../services/seguridad.service';
 import { Component, OnInit } from '@angular/core';
 import { PersonaDTO } from 'src/app/interfaces/persona/Perosna';
 import { RolDTO } from 'src/app/interfaces/usuario/Rol';
 import { UsuarioDTO } from 'src/app/interfaces/usuario/Usuario';
-import { StockService } from 'src/app/services/stock.service';
 
 @Component({
   selector: 'app-abm-usuario',
@@ -19,7 +19,7 @@ export class AbmUsuarioPage implements OnInit {
   roles: RolDTO[] = [];
   fechaSeleccionada: Date;
 
-  constructor(private stockService: StockService) {}
+  constructor(private stockService: SeguridadService) {}
 
   ngOnInit() {
     this.selectedUsuario = new UsuarioDTO();

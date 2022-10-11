@@ -1,6 +1,6 @@
+import { SeguridadService } from './../../services/seguridad.service';
 import { Component, OnInit, ChangeDetectorRef, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { StockService } from 'src/app/services/stock.service';
 import { environment } from 'src/environments/environment';
 import { timer, Subject } from 'rxjs';
 import { map, takeUntil, takeWhile, finalize } from 'rxjs/operators';
@@ -57,7 +57,7 @@ export class MenuComponent implements OnInit {
   menuPorUsuario: MenuGeneralDTO[] = [];
 
   constructor(
-    private baseService: StockService,
+    private baseService: SeguridadService,
     private menu: MenuController,
     private http: HttpClient
   ) {}

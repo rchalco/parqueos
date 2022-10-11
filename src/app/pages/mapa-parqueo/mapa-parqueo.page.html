@@ -15,10 +15,16 @@
       (mapClick)="addMarker($event)"
     >
       <map-marker
-        *ngFor="let markerPosition of markerPositions"
-        [position]="markerPosition"
-        [options]="markerOptions"
+        *ngFor="let marker of markersFromService"
+        #markerElem="mapMarker"
+        [position]="marker.position"
+        [options]="marker.options"
+        (mapClick)="openInfo(markerElem)"
       ></map-marker>
+      <map-directions-renderer
+        *ngIf="(directionsResults$ | async) as directionsResults"
+        [directions]="directionsResults"
+      ></map-directions-renderer>
     </google-map>
   </div>
 

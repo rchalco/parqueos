@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+import { SeguridadService } from './../../services/seguridad.service';
 import { Component, OnInit } from '@angular/core';
-import { StockService } from 'src/app/services/stock.service';
 import {
   environment,
   HEADERS_SERVICE,
@@ -14,11 +15,15 @@ import {
 })
 export class CambioContrasenaPage implements OnInit {
 
-  logidata: any = {IdUsuario: environment.idUsuario, Usuario : environment.Usuario, Password:'', PasswordNuevo:'', PasswordNuevoRe:'', DescripcionError:'' };
+  logidata: any = {
+    IdUsuario: environment.idUsuario,
+    Usuario: environment.Usuario, Password: '',
+    PasswordNuevo: '', PasswordNuevoRe: '', DescripcionError: ''
+  };
   validForm = true;
   mensajeError: any = { message: 'La contraseña regiditada no es la misma', state: 3 };
   //validForm = false;
-  constructor(private stockService: StockService) { }
+  constructor(private stockService: SeguridadService) { }
 
   ngOnInit() {
   }
@@ -28,8 +33,7 @@ export class CambioContrasenaPage implements OnInit {
     //console.log('contraseñas', this.logidata.PasswordNuevo);
     //console.log('contraseñas', this.logidata.PasswordNuevoRe);
     this.validForm = true;
-    if (this.logidata.PasswordNuevo != this.logidata.PasswordNuevoRe)
-    {
+    if (this.logidata.PasswordNuevo !== this.logidata.PasswordNuevoRe) {
       this.validForm = false;
       //console.log('contraseñas incorrectas',this.mensajeError);
       this.stockService.showMessageResponse(this.mensajeError);
@@ -39,16 +43,14 @@ export class CambioContrasenaPage implements OnInit {
       .cambioContrasena(login.Usuario, login.Password, login.PasswordNuevo)
       .subscribe((resul) => {
         this.stockService.showMessageResponse(resul);
-        
-        if (resul.state === 3)
-          console.log('error cambio contraseña');
-        else
-          {
-            this.logidata.Password = '';
-            this.logidata.PasswordNuevo = '';
-            this.logidata.PasswordNuevoRe = '';
-          }
-          //console.log('login lof correcto');
+
+        if (resul.state === 3) { console.log('error cambio contraseña'); }
+        else {
+          this.logidata.Password = '';
+          this.logidata.PasswordNuevo = '';
+          this.logidata.PasswordNuevoRe = '';
+        }
+        //console.log('login lof correcto');
 
         //console.log('objet', resul);
       });

@@ -1,11 +1,15 @@
+/* eslint-disable no-underscore-dangle */
 /*******
  * https://github.com/angular/components/blob/main/src/google-maps/README.md
  */
 
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MapDirectionsService, MapMarker } from '@angular/google-maps';
+import { Platform } from '@ionic/angular';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { UbicionService } from 'src/app/services/ubicion.service';
 import { HEADERS_SERVICE } from 'src/environments/environment';
 const headers = HEADERS_SERVICE;
 @Component({
@@ -16,7 +20,11 @@ const headers = HEADERS_SERVICE;
 export class MapaParqueoPage implements OnInit {
   apiLoaded = false;
   currentZoom = 18;
+  map: google.maps.Map;
   center: google.maps.LatLngLiteral;
+  markersFromService = [];
+  directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
+
   markerOptions: google.maps.MarkerOptions = {
     draggable: false,
     label: {
@@ -35,17 +43,24 @@ export class MapaParqueoPage implements OnInit {
     zoom: this.currentZoom,
   };
 
-  constructor(private httpClient: HttpClient) {
+
+  constructor(private httpClient: HttpClient,
+    private ubicionService: UbicionService,
+    private mapDirectionsService: MapDirectionsService,
+    private platform: Platform) {
 
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.platform.ready().then();
 
     const key = 'AIzaSyDXrZiXuUraWzXwB_hoTRI3RZN-XyTp8pM';//environment.googleMapsApiKey;
     this.httpClient
       .jsonp(`https://maps.googleapis.com/maps/api/js?key=${key}`, 'callback')
       .subscribe(
         () => {
+
+          this.options.mapTypeId = google.maps.MapTypeId.ROADMAP;
           console.log('🚀 ~ GoogleMapsService ~ google maps api loaded');
           ///Configuramos el mapa con la posicion actual
           navigator.geolocation.getCurrentPosition((position) => {
@@ -54,13 +69,45 @@ export class MapaParqueoPage implements OnInit {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             };
-            //colocamos una marca
-            const marca = {
-              lat: -16.51578771445301,
-              lng: -68.11269940734775
-            };
-            this.markerPositions.push(marca);
+
+            console.log('*** antes de entrar al servicio');
+
+            this.ubicionService.obtenerUbicaciones().then(service => {
+              service.subscribe(resul => {
+
+                console.log('*** ubicionService resul:', resul);
+
+                if (resul.state === 1) {
+                  resul.listEntities.forEach(element => {
+                    const customMark = {
+                      position: {
+                        lat: parseFloat(element.latitud),
+                        lng: parseFloat(element.longitud)
+                      },
+                      options: {
+                        draggable: false,
+                        label: {
+                          text: 'Pa',
+                          color: 'white',
+                        },
+                        title: element.nombreParqueo,
+                        symbol: {
+                          fillColor: 'brown'
+                        }
+                      }
+                    };
+                    this.markersFromService.push(customMark);
+                  });
+
+                }
+                else {
+                  this.ubicionService.showMessageError('Imposible comunicarse con el servidor');
+                }
+              });
+            }).catch(e => { console.error('error al ejecuar el servicio'); });
+
             //habilitamos el mapa
+            console.log('this.markersFromService', this.markersFromService);
             this.apiLoaded = true;
           });
         },
@@ -81,6 +128,31 @@ export class MapaParqueoPage implements OnInit {
   addMarker(event: google.maps.MapMouseEvent) {
     // console.log('marca: ', event.latLng.toJSON());
     // this.markerPositions.push(event.latLng.toJSON());
+  }
+
+  openInfo(marker) {
+    console.log('openInfo', marker);
+    const dest = {
+      lat: marker._position.lat,
+      lng: marker._position.lng
+    };
+
+    navigator.geolocation.getCurrentPosition(position => {
+      this.center = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      };
+      this.setRoutePolyline(this.center, dest);
+    });
+  }
+
+  setRoutePolyline(_source, _destination) {
+    const request = {
+      origin: _source,
+      destination: _destination,
+      travelMode: google.maps.TravelMode.DRIVING
+    };
+    this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result));
   }
 
 }

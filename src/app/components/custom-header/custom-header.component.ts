@@ -1,4 +1,4 @@
-import { StockService } from 'src/app/services/stock.service';
+import { SeguridadService } from './../../services/seguridad.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
@@ -14,9 +14,9 @@ export class CustomHeaderComponent implements OnInit {
   usuarioNombre: string;
   constructor(
     private menu: MenuController,
-    private baseServices: StockService,
+    private baseServices: SeguridadService,
     private navCtri: NavController,
-    private stockService: StockService,
+    private stockService: SeguridadService,
     private appComponent: AppComponent
   ) {}
   ngOnInit() {

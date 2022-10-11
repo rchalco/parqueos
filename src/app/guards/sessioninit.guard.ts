@@ -1,3 +1,4 @@
+import { SeguridadService } from './../services/seguridad.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -7,14 +8,14 @@ import {
 } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { StockService } from '../services/stock.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class SessioninitGuard implements CanActivate {
   constructor(
-    private baseService: StockService,
+    private baseService: SeguridadService,
     private navCtri: NavController
   ) {}
 
