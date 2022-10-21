@@ -5,6 +5,38 @@
 </ion-header>
 
 <ion-content>
+  <ion-col size="12">
+    <ion-list>
+      <!-- <ion-item lines="full">
+        <ion-label>Ciudad</ion-label>
+        <ion-select [value]="currentCity" placeholder="Escoja una ciudad">
+          <ion-select-option [value]="c" *ngFor="let c of lCitys"
+            >{{c}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item> -->
+      <ion-item lines="full">
+        <ion-label>Zona</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Ingrese la zona"
+          [(ngModel)]="txtZona"
+        ></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-list *ngIf="txtZona.length > 3">
+          <ion-item
+            *ngFor="let u of ubicaciones | filtro: txtZona:'nombreParqueo'"
+            (click)="centrarMapaParqueo(u)"
+          >
+            <ion-icon slot="end" name="arrow-forward-circle"></ion-icon>
+            <ion-label>{{u.nombreParqueo}} </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-item>
+    </ion-list>
+  </ion-col>
+
   <div *ngIf="apiLoaded">
     <google-map
       height="500px"

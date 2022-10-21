@@ -23,6 +23,10 @@ export class MapaParqueoPage implements OnInit {
   map: google.maps.Map;
   center: google.maps.LatLngLiteral;
   markersFromService = [];
+  txtZona = '';
+  currentCity;
+  lCitys = [];
+  ubicaciones = [];
   directionsResults$: Observable<google.maps.DirectionsResult | undefined>;
 
   markerOptions: google.maps.MarkerOptions = {
@@ -61,7 +65,7 @@ export class MapaParqueoPage implements OnInit {
         () => {
 
           this.options.mapTypeId = google.maps.MapTypeId.ROADMAP;
-          console.log('🚀 ~ GoogleMapsService ~ google maps api loaded');
+          console.log('🚀 ~ GoogleMapsService cargado');
           ///Configuramos el mapa con la posicion actual
           navigator.geolocation.getCurrentPosition((position) => {
             //centramos el mapa
@@ -78,7 +82,13 @@ export class MapaParqueoPage implements OnInit {
                 console.log('*** ubicionService resul:', resul);
 
                 if (resul.state === 1) {
+                  this.ubicaciones = resul.listEntities;
                   resul.listEntities.forEach(element => {
+                    ///obtenemos las cuidades
+                    if (!(this.lCitys.findIndex(x => x === element.departamento) > 0)) {
+                      this.lCitys.push(element.departamento);
+                    }
+
                     const customMark = {
                       position: {
                         lat: parseFloat(element.latitud),
@@ -112,7 +122,7 @@ export class MapaParqueoPage implements OnInit {
           });
         },
         (error) => {
-          console.log('🚀 ~ GoogleMapsService ~ google maps api cannot be loaded', error);
+          console.error('🚀 ~ GoogleMapsService ~ google maps api no puedo ser cargado', error);
         }
       );
   }
@@ -153,6 +163,14 @@ export class MapaParqueoPage implements OnInit {
       travelMode: google.maps.TravelMode.DRIVING
     };
     this.directionsResults$ = this.mapDirectionsService.route(request).pipe(map(response => response.result));
+  }
+
+  centrarMapaParqueo(_ubicacion) {
+    //centramos el mapa
+    this.center = {
+      lat: parseFloat(_ubicacion.latitud),
+      lng: parseFloat(_ubicacion.longitud),
+    };
   }
 
 }

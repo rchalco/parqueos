@@ -56,11 +56,12 @@ export const LogoVoucher = '';
  export const URL_MIROVENTAOPERACION =
    'http://localhost:8001/api/MicroventaOperacion/';
  export const URL_TINTORERIA = 'http://localhost:8001/api/Tintoreria/';
- //export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
+
  export const URL_PERSON = 'http://localhost:8001/api/Person/';
 
 ///Dev
- //export const URL_UBICACION = 'http://localhost:8001/api/Ubicacion/';
+// export const URL_UBICACION = 'http://localhost:8001/api/Ubicacion/';
+// export const URL_SECURITY = 'http://localhost:8001/api/Seguridad/';
 
 ///Prod
  export const URL_UBICACION = 'http://140.82.15.241:8003/api/Ubicacion/';
